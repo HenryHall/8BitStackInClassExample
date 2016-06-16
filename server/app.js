@@ -22,9 +22,16 @@ app.post( '/createNew', urlencodedParser, function( req, res ){
   console.log( 'in POST createNew: ' + req.body.username + " " + req.body.active );
   pg.connect( connectionString, function( err, client, done ){
     // "users" is table. username = $1 = req.body.username
-    client.query( 'INSERT INTO students ( name, active, created ) VALUES ( $1, $2, $3 )', [ req.body.username, req.body.active, 'now()' ] );
+    client.query( 'INSERT INTO students ( name, active, created ) VALUES ( $1, $2, $3 )', [ req.body.username, req.body.active, 'now();' ] );
   });
 }); // end createNew
+
+app.post( '/updateUser', urlencodedParser, function( req, res ){
+  console.log( 'in POST updateUser: ' + req.body.username + " with " + req.body.food );
+  pg.connect( connectionString, function( err, client, done ){
+    client.query( "UPDATE students SET active = 'true', food = '" + req.body.food +"', created = 'now();' WHERE name = '" + req.body.name + "'");
+  });
+}); // end updateUser
 
 // send back all records in users that conform to the query
 app.get( '/getUsers', function( req, res ){

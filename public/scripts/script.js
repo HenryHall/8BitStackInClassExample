@@ -5,7 +5,7 @@ $( document ).ready( function(){
     // create object to post
     var newUser={
       "username": newUserName,
-      "active": true
+      "active": false
     };// end object
     // send object to server as a post
     $.ajax({
@@ -35,6 +35,20 @@ $( document ).ready( function(){
       //Create a click event for the submit button
       $('#' + i + 'Button').click(function(){
         $('#' + i + 'In').prop('readonly', true);
+
+        //Update the user who has submitted what they will bring
+        var updatedUser = {
+          "username": users[i].name,
+          "food": $('#' + i + 'In').val(),
+          "created": 'now();'
+        }
+
+
+        $.ajax({
+          type: 'POST',
+          url: '/updateUser',
+          data: updatedUser
+        }); // end ajax
         $(this).remove();
       });
     } // end for loop
