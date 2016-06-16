@@ -26,15 +26,17 @@ $( document ).ready( function(){
   });
   function showUsers( users ){
     console.log( 'in showUsers:' + users );
-    for( i=0; i<4; i++ )
+    $('#outputDiv').empty();
+    for(let i=0; i<4; i++ )
     {
-      var foodInput = document.createElement( 'input' );
-      foodInput.type = "text";
-      var submitButton = document.createElement ( 'button' );
-      submitButton.textContent = "Add Food";
-      submitButton.className = "submitButton";
-      // var userOut = "<div>" + users[ i ].username + " " + foodInput + " " + submitButton "</div>" ;
-      $('#outputDiv').append( "<div>" + users[ i ].username + " " + foodInput + " " + submitButton + "</div>" );
+      console.log("Making user " + i + " " + users[i].name);
+      // Create a label, input and button for users[i]
+      $('#outputDiv').append( "<div><p>" + users[ i ].name + "</p><input id='" + i + "In'><button id='" + i + "Button'>Submit</button> </div>" );
+      //Create a click event for the submit button
+      $('#' + i + 'Button').click(function(){
+        $('#' + i + 'In').prop('readonly', true);
+        $(this).remove();
+      });
     } // end for loop
   } // end show users
 }); // end jQuery

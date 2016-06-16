@@ -33,7 +33,7 @@ app.get( '/getUsers', function( req, res ){
   var results =[];
   pg.connect( connectionString, function( err, client, done ){
     // get all user records and store in "query" variable
-    var query = client.query( 'SELECT * FROM users WHERE active=true ORDER BY id DESC;' );
+    var query = client.query( 'SELECT * FROM students ORDER BY created DESC LIMIT 4;' );
     console.log( "query: " + query );
     // push each row in query into our results array
     var rows = 0;
