@@ -31,7 +31,7 @@ $( document ).ready( function(){
     {
       console.log("Making user " + i + " " + users[i].name);
       // Create a label, input and button for users[i]
-      $('#outputDiv').append( "<div><p>" + users[ i ].name + "</p><input id='" + i + "In'><button id='" + i + "Button'>Submit</button> </div>" );
+      $('#outputDiv').append( "<div><p>" + users[ i ].name + "</p><input id='" + i + "In'><button class ='btn btn-primary' id='" + i + "Button'>Submit</button> </div>" );
       //Create a click event for the submit button
       $('#' + i + 'Button').click(function(){
         $('#' + i + 'In').prop('readonly', true);
