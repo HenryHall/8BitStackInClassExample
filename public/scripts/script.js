@@ -26,14 +26,15 @@ $( document ).ready( function(){
   });
   function showUsers( users ){
     console.log( 'in showUsers:' + users );
-    for( i=0; i<users.length; i++ )
+    for( i=0; i<4; i++ )
     {
-      var userOut = "<p>" + users[ i ].username + ", active: " + users[ i ].active + " created: " + users[ i ].created + "</p>";
-      $('#outputDiv').append( userOut );
-      var userButton = "<button data-id='" + users[ i ].id + "'>Deactivate " + users[ i ].username + "</button>";
-      $('#outputDiv').append( userButton );
-
+      var foodInput = document.createElement( 'input' );
+      foodInput.type = "text";
+      var submitButton = document.createElement ( 'button' );
+      submitButton.textContent = "Add Food";
+      submitButton.className = "submitButton";
+      // var userOut = "<div>" + users[ i ].username + " " + foodInput + " " + submitButton "</div>" ;
+      $('#outputDiv').append( "<div>" + users[ i ].username + " " + foodInput + " " + submitButton + "</div>" );
     } // end for loop
   } // end show users
-
 }); // end jQuery

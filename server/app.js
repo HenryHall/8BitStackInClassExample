@@ -6,7 +6,7 @@ var urlencodedParser=bodyParser.urlencoded( { extended: false } );
 var pg=require('pg');
 // user to connect to the "introToSQL" table on local host
 // postgres must be running and you must have this db name correct
-var connectionString = 'postgres://localhost:5432/introToSQL';
+var connectionString = 'postgres://localhost:5432/nuBreakfastClub';
 
 // static public folder
 app.use( express.static( 'public' ) );
@@ -22,7 +22,7 @@ app.post( '/createNew', urlencodedParser, function( req, res ){
   console.log( 'in POST createNew: ' + req.body.username + " " + req.body.active );
   pg.connect( connectionString, function( err, client, done ){
     // "users" is table. username = $1 = req.body.username
-    client.query( 'INSERT INTO users ( username, active, created ) VALUES ( $1, $2, $3 )', [ req.body.username, req.body.active, 'now()' ] );
+    client.query( 'INSERT INTO students ( name, active, created ) VALUES ( $1, $2, $3 )', [ req.body.username, req.body.active, 'now()' ] );
   });
 }); // end createNew
 
