@@ -29,7 +29,7 @@ app.post( '/createNew', urlencodedParser, function( req, res ){
 app.post( '/updateUser', urlencodedParser, function( req, res ){
   console.log( 'in POST updateUser: ' + req.body.username + " with " + req.body.food );
   pg.connect( connectionString, function( err, client, done ){
-    client.query( "UPDATE students SET active = 'true', food = '" + req.body.food +"', created = 'now();' WHERE name = '" + req.body.name + "'");
+    client.query( "UPDATE students SET created = 'now()', food = '" + req.body.food + "' WHERE name= '" + req.body.username + "'");
   });
 }); // end updateUser
 
